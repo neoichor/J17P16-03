@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Attach to Remote Program in Container",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005,
+      "projectName": "REPLACE_WITH_YOUR_PROJECT_NAME"
+    }
+  ]
+}

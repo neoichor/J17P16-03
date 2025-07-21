@@ -1,0 +1,6 @@
+{
+    "java.maven.downloadSources.parallel": false,
+    "java.jdt.ls.vmargs": "-Xms1g -Xmx2g",
+    "java.autobuild.enabled": false,
+    "java.server.launchMode": "Hybrid"
+}

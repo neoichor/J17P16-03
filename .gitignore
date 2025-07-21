@@ -1,0 +1,28 @@
+# Maven build output
+target/
+dependency-reduced-pom.xml
+
+# Log files
+*.log
+logs/
+
+# IDE settings
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Local environment variables file
+.env
+
+# VSCode local settings
+# launch.jsonとsettings.jsonはテンプレートに含めるため、ここでは無視しない
+# .vscode/*
+# !.vscode/
+# !.vscode/launch.json
+# !.vscode/setting.json

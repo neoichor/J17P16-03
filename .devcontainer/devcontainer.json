@@ -1,0 +1,34 @@
+{
+  "name": "Java & PostgreSQL Project",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "java-app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-azuretools.vscode-docker",
+        "Google.geminicodeassist",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-xml"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "/bin/bash",
+                "args": ["-l"]
+            }
+        }
+      }
+    }
+  },
+  "postAttachCommand": {
+    "chown-m2": "sudo chown vscode:vscode /home/vscode/.m2",
+    "install-gemini-cli": "sudo npm install -g @google/gemini-cli",
+    "git-default-branch": "git config --global init.defaultBranch main"
+  }
+}
