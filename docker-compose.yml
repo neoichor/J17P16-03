@@ -3,9 +3,9 @@ services:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.dev
-    working_dir: /workspaces/REPLACE_WITH_YOUR_PROJECT_NAME
+    working_dir: /workspaces/J17P16-01
     volumes:
-      - .:/workspaces/REPLACE_WITH_YOUR_PROJECT_NAME:cached
+      - .:/workspaces/J17P16-01:cached
       - maven-cache:/home/vscode/.m2
     depends_on:
       postgres-db: { condition: service_healthy }

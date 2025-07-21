@@ -23,6 +23,6 @@ Thumbs.db
 # VSCode local settings
 # launch.jsonとsettings.jsonはテンプレートに含めるため、ここでは無視しない
 # .vscode/*
-# !.vscode/
-# !.vscode/launch.json
-# !.vscode/setting.json
+!.vscode/
+!.vscode/launch.json
+!.vscode/setting.json
