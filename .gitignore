@@ -21,8 +21,8 @@ Thumbs.db
 .env
 
 # VSCode local settings
-# launch.jsonとsettings.jsonはテンプレートに含めるため、ここでは無視しない
-# .vscode/*
+# launch.jsonとsetting.jsonはテンプレートに含めるため、ここでは無視しない
+# .vscode 全体を管理対象にするため、無視ルールを削除
 !.vscode/
-!.vscode/launch.json
-!.vscode/setting.json
+# 拡張子 .bat のファイルを明示的に管理対象にする
+!*.bat

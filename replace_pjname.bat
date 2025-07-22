@@ -1,28 +1,25 @@
-# Maven build output
-target/
-dependency-reduced-pom.xml
+@echo off
+setlocal enabledelayedexpansion
 
-# Log files
-*.log
-logs/
+if "%~1"=="" (
+    echo [ERROR] New project name not specified.
+    pause
+    exit /b 1
+)
 
-# IDE settings
-.idea/
-*.iml
-.settings/
-.classpath
-.project
+set "PROJECT_NAME=%~1"
+set "DOCKER_COMPOSE_FILE=docker-compose.yml"
+set "POM_FILE=pom.xml"
+set "LAUNCH_FILE=.vscode\launch.json"
 
-# OS generated files
-.DS_Store
-Thumbs.db
+echo === Replacing placeholders...
+echo   New Project Name: %PROJECT_NAME%
 
-# Local environment variables file
-.env
+powershell -Command "(Get-Content -Path '%DOCKER_COMPOSE_FILE%') -replace 'REPLACE_WITH_YOUR_PROJECT_NAME', '%PROJECT_NAME%' | Set-Content -Path '%DOCKER_COMPOSE_FILE%'"
+powershell -Command "(Get-Content -Path '%POM_FILE%') -replace 'REPLACE_WITH_YOUR_PROJECT_NAME', '%PROJECT_NAME%' | Set-Content -Path '%POM_FILE%'"
+powershell -Command "(Get-Content -Path '%LAUNCH_FILE%') -replace 'REPLACE_WITH_YOUR_PROJECT_NAME', '%PROJECT_NAME%' | Set-Content -Path '%LAUNCH_FILE%'"
 
-# VSCode local settings
-# launch.jsonとsetting.jsonはテンプレートに含めるため、ここでは無視しない
-# .vscode 全体を管理対象にするため、無視ルールを削除
-!.vscode/
-# 拡張子 .bat のファイルを明示的に管理対象にする
-!*.bat
+echo All replacements completed successfully.
+pause
+endlocal
+exit /b 0
