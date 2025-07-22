@@ -16,7 +16,8 @@ if ([string]::IsNullOrEmpty($NewProjectName)) {
 
 # ■■■ 2. 変数の設定と引数の表示 ■■■
 $placeholder = "REPLACE_WITH_YOUR_PROJECT_NAME"
-$fileList = @("docker-compose.yml", "pom.xml", ".vscode\launch.json")
+# ▼▼▼ このリストに ".devcontainer\devcontainer.json" を追加 ▼▼▼
+$fileList = @("docker-compose.yml", "pom.xml", ".vscode\launch.json", ".devcontainer\devcontainer.json")
 $successFiles = @()
 $failedFiles = @()
 
