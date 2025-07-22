@@ -18,12 +18,7 @@ if exist "%rootDir%\.gemini" (
     call :ProcessDirectory "%rootDir%\.gemini"
 )
 
-rem Process .gemini directory if exists
-if exist "%rootDir%\.vscode" (
-    call :ProcessDirectory "%rootDir%\.vscode"
-)
-
-rem Process .gemini directory if exists
+rem Process postgres-config directory if exists
 if exist "%rootDir%\postgres-config" (
     call :ProcessDirectory "%rootDir%\postgres-config"
 )
@@ -50,7 +45,7 @@ exit /b
 set "dir=%~1"
 pushd "%dir%"
 
-for %%f in (*.json *.yml *.dev .env *.conf .gitignore pom.xml) do (
+for %%f in (*.json *.yml *.dev *.conf .env .gitignore pom.xml) do (
     if exist "%%f" (
         if !first! == 1 (
             echo 【%dir%\%%f】 >> "%rootDir%\ALL-ENV.TXT"
