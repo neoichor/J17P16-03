@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch MainApp",
+      "request": "launch",
+      "mainClass": "jdbc01.MainApp",
+      "projectName": "REPLACE_WITH_YOUR_PROJECT_NAME"
+    },
+    {
+      "type": "java",
       "name": "Attach to Remote Program in Container",
       "request": "attach",
       "hostName": "localhost",

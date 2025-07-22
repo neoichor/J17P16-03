@@ -3,10 +3,11 @@ services:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.dev
-    working_dir: /workspaces/J17P16-01
+    working_dir: /workspaces/REPLACE_WITH_YOUR_PROJECT_NAME
     volumes:
-      - .:/workspaces/J17P16-01:cached
-      - maven-cache:/home/vscode/.m2
+      - .:/workspaces/REPLACE_WITH_YOUR_PROJECT_NAME:cached
+      # ユーザーがrootに戻ったため、パスを修正
+      - maven-cache:/root/.m2
     depends_on:
       postgres-db: { condition: service_healthy }
     env_file:
@@ -17,15 +18,16 @@ services:
       - DB_NAME=${POSTGRES_DB}
       - DB_USER=${POSTGRES_USER}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    # JAVA_TOOL_OPTIONSは削除
     ports:
       - "5005:5005"
-    user: vscode
+    # user: vscode は削除
     command: tail -f /dev/null
 
   postgres-db:
     image: postgres:16
     restart: always
+    # ▼▼▼ commandセクションを追記 ▼▼▼
     command:
       - "postgres"
       - "-c"
@@ -39,6 +41,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./sql:/docker-entrypoint-initdb.d
+      # ▼▼▼ postgresql.confのマウントを追記 ▼▼▼
       - ./postgres-config/postgresql.conf:/etc/postgresql/postgresql.conf
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]

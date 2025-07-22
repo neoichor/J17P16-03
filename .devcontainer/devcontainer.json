@@ -4,31 +4,27 @@
     "../docker-compose.yml"
   ],
   "service": "java-app",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/REPLACE_WITH_YOUR_PROJECT_NAME",
+
+  // ユーザーをrootに戻す
+  "remoteUser": "root",
+
   "customizations": {
     "vscode": {
       "extensions": [
-        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
         "ms-azuretools.vscode-docker",
         "Google.geminicodeassist",
         "esbenp.prettier-vscode",
         "redhat.vscode-xml"
-      ],
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.profiles.linux": {
-            "bash": {
-                "path": "/bin/bash",
-                "args": ["-l"]
-            }
-        }
-      }
+      ]
     }
   },
   "postAttachCommand": {
-    "chown-m2": "sudo chown vscode:vscode /home/vscode/.m2",
-    "install-gemini-cli": "sudo npm install -g @google/gemini-cli",
+//    "install-gemini-cli": "npm install -g @google/gemini-cli",
     "git-default-branch": "git config --global init.defaultBranch main"
   }
 }

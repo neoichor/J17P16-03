@@ -3,22 +3,13 @@ FROM eclipse-temurin:17-jdk-jammy
 
 # --- メンテナンス用の変数を定義 ---
 ARG MAVEN_VERSION=3.9.11
-ARG USERNAME=vscode
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
 
 # --- 必要なシステムツールのインストール ---
-# ネットワーク診断ツール(iputils-ping)を追加
+# git, curl, sudo など基本ツールに加え、ネットワーク診断ツール(iputils-ping)を追加
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     git curl unzip procps sudo iputils-ping \
     && rm -rf /var/lib/apt/lists/*
-
-# --- 非rootユーザーの作成と設定 ---
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # --- Mavenのインストール ---
 ARG MAVEN_HOME=/usr/local/apache-maven
@@ -26,8 +17,11 @@ RUN curl -fsSL https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/
     && tar -xzvf /tmp/apache-maven.tar.gz -C /usr/local \
     && mv /usr/local/apache-maven-${MAVEN_VERSION} ${MAVEN_HOME} \
     && rm /tmp/apache-maven.tar.gz
+ENV PATH="${MAVEN_HOME}/bin:${PATH}"
 
 # --- Node.jsのインストール ---
+# 1. NodeSourceのリポジトリを追加
+# 2. apt-getでnodejsをインストール
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - \
     && sudo apt-get install -y nodejs
 
@@ -35,7 +29,4 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - \
 RUN npm install -g npm@latest
 
 # --- 環境変数PATHを設定 ---
-ENV PATH="/usr/local/bin:${MAVEN_HOME}/bin:${PATH}"
-
-# --- デフォルトユーザーをvscodeに切り替え ---
-USER $USERNAME
+ENV PATH="/usr/local/bin:${PATH}"
