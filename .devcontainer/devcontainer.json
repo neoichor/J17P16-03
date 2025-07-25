@@ -4,7 +4,7 @@
     "../docker-compose.yml"
   ],
   "service": "java-app",
-  "workspaceFolder": "/workspaces/REPLACE_WITH_YOUR_PROJECT_NAME",
+  "workspaceFolder": "/workspaces/J17P16-03",
 
   // ユーザーをrootに戻す
   "remoteUser": "root",

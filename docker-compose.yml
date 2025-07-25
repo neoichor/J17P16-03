@@ -3,9 +3,9 @@ services:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.dev
-    working_dir: /workspaces/REPLACE_WITH_YOUR_PROJECT_NAME
+    working_dir: /workspaces/J17P16-03
     volumes:
-      - .:/workspaces/REPLACE_WITH_YOUR_PROJECT_NAME:cached
+      - .:/workspaces/J17P16-03:cached
       # ユーザーがrootに戻ったため、パスを修正
       - maven-cache:/root/.m2
     depends_on:

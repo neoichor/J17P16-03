@@ -3,10 +3,17 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MainApp",
+      "request": "launch",
+      "mainClass": "jdbc01.MainApp",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
       "name": "Launch MainApp",
       "request": "launch",
       "mainClass": "jdbc01.MainApp",
-      "projectName": "REPLACE_WITH_YOUR_PROJECT_NAME"
+      "projectName": "J17P16-03"
     },
     {
       "type": "java",
@@ -14,7 +21,7 @@
       "request": "attach",
       "hostName": "localhost",
       "port": 5005,
-      "projectName": "REPLACE_WITH_YOUR_PROJECT_NAME"
+      "projectName": "J17P16-03"
     }
   ]
 }
