@@ -24,7 +24,7 @@
     }
   },
   "postAttachCommand": {
-//    "install-gemini-cli": "npm install -g @google/gemini-cli",
+    "install-gemini-cli": "npm install -g @google/gemini-cli",
     "git-default-branch": "git config --global init.defaultBranch main"
   }
 }
