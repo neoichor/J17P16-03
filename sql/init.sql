@@ -1,6 +1,12 @@
 -- このスクリプトは docker-compose.yml で作成された 'sukkiri' データベース上で実行されます。
 -- データベースの作成や接続コマンドは不要です。
 
+-- テーブルが既に存在する場合にエラーにならないよう、削除処理を追加
+DROP TABLE IF EXISTS cashbook CASCADE;
+DROP TABLE IF EXISTS item CASCADE;
+DROP VIEW IF EXISTS cashbook_view;
+DROP TABLE IF EXISTS "家計簿";
+
 -- 開発演習用のitemテーブルを作成する
 CREATE TABLE item (
     item_id SERIAL PRIMARY KEY,
