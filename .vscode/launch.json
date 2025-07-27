@@ -5,6 +5,13 @@
       "type": "java",
       "name": "MainApp",
       "request": "launch",
+      "mainClass": "jdbc02.MainApp",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "MainApp",
+      "request": "launch",
       "mainClass": "jdbc01.MainApp",
       "projectName": "J17P16-01"
     },
