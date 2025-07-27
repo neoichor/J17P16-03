@@ -5,64 +5,64 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-	public static void main(String[] args) {
-		try {
-			CashbookDAO cashbookDAO = new CashbookDAO();
+    public static void main(String[] args) {
+        try {
+            CashbookDAO cashbookDAO = new CashbookDAO();
 
-			// 全データを取得して表示
-			System.out.println("----- CRUD操作前 -----");
-			List<CashbookDTO> cashbooks = cashbookDAO.getAllCashbooks();
-			for (CashbookDTO cashbook : cashbooks) {
-				System.out.println(cashbook.getCashbookId() + ", "
-						+ cashbook.getActOn() + ", "
-						+ cashbook.getItemId() + ", "
-						+ cashbook.getNote() + ", "
-						+ cashbook.getCashIn() + ", "
-						+ cashbook.getCashOut());
-			}
+            System.out.println("----- CRUD操作前 -----");
+            List<CashbookDTO> cashbooksBefore = cashbookDAO.getAllCashbooks();
+            for (CashbookDTO cashbook : cashbooksBefore) {
+                System.out.println(cashbook);
+            }
 
-			// 新しいデータを挿入
-			CashbookDTO newCashbook = new CashbookDTO();
-			newCashbook.setActOn(Date.valueOf("2024-02-20"));
-			newCashbook.setItemId(1);
-			newCashbook.setNote("新しいメモを追加");
-			newCashbook.setCashIn(0);
-			newCashbook.setCashOut(1000);
-			cashbookDAO.insertCashbook(newCashbook);
+            // --- 1. 追加 (Create) & 確認 (Read) ---
+            System.out.println("\n----- 1. 新しいデータを追加します -----");
+            CashbookDTO newCashbook = new CashbookDTO();
+            newCashbook.setActOn(Date.valueOf("2025-07-26"));
+            newCashbook.setItemId(3); // 教養娯楽費
+            newCashbook.setNote("JDBCの学習書");
+            newCashbook.setCashIn(0);
+            newCashbook.setCashOut(3500);
+            
+            int newId = cashbookDAO.insertCashbook(newCashbook);
+            System.out.println("追加処理が完了しました。 (新しいID: " + newId + ")");
 
-			// データを更新（２番目のレコードを更新）
-			if (!cashbooks.isEmpty()) {
-				CashbookDTO updateCashbook = cashbooks.get(1); // 2レコード目を取得
-				updateCashbook.setNote("2行目のメモを更新");
-				cashbookDAO.updateCashbook(updateCashbook);
-			} else {
-				System.out.println("更新するデータがありません。");
-			}
+            System.out.println("▼追加されたレコード内容");
+            CashbookDTO insertedCashbook = cashbookDAO.findById(newId);
+            System.out.println(insertedCashbook);
 
-			// データを削除（三番目のレコードを削除）
-			if (cashbooks.size() > 1) {
-				CashbookDTO deleteCashbook = cashbooks.get(2); // 3番レコード目を取得
-				cashbookDAO.deleteCashbook(deleteCashbook.getCashbookId());
-			} else {
-				System.out.println("削除するデータがありません。");
-			}
+            // --- 2. 更新 (Update) ---
+            System.out.println("\n----- 2. 追加したデータを更新します (ID: " + newId + ") -----");
+            CashbookDTO updateTarget = cashbookDAO.findById(newId);
+            if (updateTarget != null) {
+                System.out.println("更新対象データ: " + updateTarget);
+                updateTarget.setNote("新しく追加した本のメモを更新！");
+                cashbookDAO.updateCashbook(updateTarget);
+                System.out.println("更新完了。");
+            } else {
+                System.out.println("ID:" + newId + " のデータは見つかりませんでした。");
+            }
 
-			System.out.println("----- CRUD操作後 -----");
-			System.out.print("①新しいメモを追加");
-			System.out.print("②2行目のメモを更新");
-			System.out.println("③3行目を削除");
-			cashbooks = cashbookDAO.getAllCashbooks();
-			for (CashbookDTO cashbook : cashbooks) {
-				System.out.println(cashbook.getCashbookId() + ", "
-						+ cashbook.getActOn() + ", "
-						+ cashbook.getItemId() + ", "
-						+ cashbook.getNote() + ", "
-						+ cashbook.getCashIn() + ", "
-						+ cashbook.getCashOut());
-			}
+            // --- 3. 削除 (Delete) ---
+            System.out.println("\n----- 3. 更新したデータを削除します (ID: " + newId + ") -----");
+            CashbookDTO deleteTarget = cashbookDAO.findById(newId);
+            if (deleteTarget != null) {
+                System.out.println("削除対象データ: " + deleteTarget);
+                cashbookDAO.deleteCashbook(deleteTarget.getCashbookId());
+                System.out.println("削除完了。");
+            } else {
+                System.out.println("ID:" + newId + " のデータは見つかりませんでした。");
+            }
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+            System.out.println("\n----- CRUD操作後（追加したデータが削除され、元の状態に戻っている） -----");
+            List<CashbookDTO> cashbooksAfter = cashbookDAO.getAllCashbooks();
+            for (CashbookDTO cashbook : cashbooksAfter) {
+                System.out.println(cashbook);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("データベース操作中にエラーが発生しました。");
+            e.printStackTrace();
+        }
+    }
 }

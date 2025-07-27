@@ -58,4 +58,16 @@ public class CashbookDTO {
     public void setCashOut(int cashOut) {
         this.cashOut = cashOut;
     }
-} 
+
+    @Override
+    public String toString() {
+        return "CashbookDTO{" +
+                "cashbookId=" + cashbookId +
+                ", actOn=" + actOn +
+                ", itemId=" + itemId +
+                ", note='" + note + '\'' +
+                ", cashIn=" + cashIn +
+                ", cashOut=" + cashOut +
+                '}';
+    }
+}
