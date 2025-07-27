@@ -29,7 +29,7 @@ public class DatabaseConnection {
 
     /**
      * プライベートコンストラクタ。
-     * ユーティリティクラスはインスタンス化させないための作法です。
+     * ユーティリティクラスをインスタンス化させない作法です。
      */
     private DatabaseConnection() {
     }
