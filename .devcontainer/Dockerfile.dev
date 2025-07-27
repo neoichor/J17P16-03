@@ -5,10 +5,12 @@ FROM eclipse-temurin:17-jdk-jammy
 ARG MAVEN_VERSION=3.9.11
 
 # --- 必要なシステムツールのインストール ---
-# git, curl, sudo など基本ツールに加え、ネットワーク診断ツール(iputils-ping)を追加
+# git, curl, sudo など基本ツールに加え、
+# ネットワーク診断ツール(iputils-ping)と
+# PostgreSQLクライアント(postgresql-client)を追加
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-    git curl unzip procps sudo iputils-ping \
+    git curl unzip procps sudo iputils-ping postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Mavenのインストール ---
