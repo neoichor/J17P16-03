@@ -1,9 +1,9 @@
-# Geminiとの協働ルール (gemini.md)
+# Gemini との協働ルール (gemini.md)
 
 ## 1. プロジェクトの目的
 
-このプロジェクトは、JavaのJDBC（Java Database Connectivity）技術を学習・検証することを目的としています。
-段階的に `jdbc01` から `jdbc03` へと発展しており、データベース操作の基本からDAO（Data Access Object）パターンの実装までを含みます。
+このプロジェクトは、Java の JDBC（Java Database Connectivity）技術を学習・検証することを目的としています。
+段階的に `jdbc01` から `jdbc03` へと発展しており、データベース操作の基本から DAO（Data Access Object）パターンの実装までを含みます。
 
 ## 2. 技術スタック
 
@@ -19,7 +19,7 @@
 
 1.  リポジトリのルートディレクトリで、`.env.example` をコピーして `.env` ファイルを作成します。
 2.  `.env` ファイル内の環境変数を、ご自身の環境に合わせて設定してください。
-3.  以下のコマンドを実行して、Dockerコンテナを起動します。
+3.  以下のコマンドを実行して、Docker コンテナを起動します。
 
     ```bash
     docker-compose up -d --build
@@ -35,10 +35,14 @@ docker-compose down
 
 - **フォーマット:** 基本的に[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)に準拠します。
 - **命名規則:**
-    - クラス名: `UpperCamelCase`
-    - メソッド名・変数名: `lowerCamelCase`
-    - 定数: `CONSTANT_CASE`
+  - クラス名: `UpperCamelCase`
+  - メソッド名・変数名: `lowerCamelCase`
+  - 定数: `CONSTANT_CASE`
 - **コメント:** 複雑なロジックや、なぜその実装にしたのかという理由を説明する場合にコメントを追加してください。
+- **文法:**
+  - 使用する文法は Java SE8。
+  - 初学者に Java の基礎を理解してもらうために、アロー構文や、::を使ったシュガーシンタックスは使わない。
+  - 拡張 for 文と try-catch-with-resources 文はデータベースを扱うので積極的に使う。
 
 ## 5. ビルドと実行
 
@@ -52,8 +56,8 @@ mvn package
 
 ### 5.2. アプリケーションの実行
 
-ビルドが成功すると、`target` ディレクトリに実行可能なJARファイルが生成されます。
-以下のコマンドで `jdbc03` のアプリケーションを実行します。
+ビルドが成功すると、`target` ディレクトリに実行可能な JAR ファイルが生成されます。
+以下のコマンドで例えば `jdbc03` のアプリケーションを実行します。
 
 ```bash
 java -jar target/J17P16-01-0.0.1-SNAPSHOT.jar
@@ -73,6 +77,7 @@ java -jar target/J17P16-01-0.0.1-SNAPSHOT.jar
   ```bash
   mvn jacoco:report
   ```
+
   レポートは `target/site/jacoco/index.html` に生成されます。
 
 ## 7. コミットメッセージ
@@ -91,5 +96,5 @@ java -jar target/J17P16-01-0.0.1-SNAPSHOT.jar
 
 ## 8. その他
 
-- データベースの接続情報は `.env` ファイルで管理し、Gitの追跡対象から除外します。
+- データベースの接続情報は `.env` ファイルで管理し、Git の追跡対象から除外します。
 - 新しいライブラリを追加する場合は、`pom.xml` に記述し、`mvn dependency-check:check` を実行して脆弱性がないか確認してください。
