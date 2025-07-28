@@ -3,6 +3,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CashbookDelete",
+      "request": "launch",
+      "mainClass": "jdbc05.CashbookDelete",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "CashbookUpdate",
+      "request": "launch",
+      "mainClass": "jdbc05.CashbookUpdate",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "CashbookInsert",
+      "request": "launch",
+      "mainClass": "jdbc05.CashbookInsert",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "CashbookDateRangeSearch",
+      "request": "launch",
+      "mainClass": "jdbc05.CashbookDateRangeSearch",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
       "name": "ItemDelete",
       "request": "launch",
       "mainClass": "jdbc04.ItemDelete",
