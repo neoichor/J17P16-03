@@ -3,6 +3,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ItemDelete",
+      "request": "launch",
+      "mainClass": "jdbc04.ItemDelete",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "ItemUpdate",
+      "request": "launch",
+      "mainClass": "jdbc04.ItemUpdate",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "ItemInsert",
+      "request": "launch",
+      "mainClass": "jdbc04.ItemInsert",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "ItemList",
+      "request": "launch",
+      "mainClass": "jdbc04.ItemList",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
       "name": "MainApp",
       "request": "launch",
       "mainClass": "jdbc03.MainApp",
