@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MainApp (jdbc02_2)",
+      "request": "launch",
+      "mainClass": "jdbc02_2.MainApp",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
+      "name": "MainApp",
+      "request": "launch",
+      "mainClass": "jdbc02_2.MainApp",
+      "projectName": "J17P16-01"
+    },
+    {
+      "type": "java",
       "name": "CashbookDelete",
       "request": "launch",
       "mainClass": "jdbc05.CashbookDelete",
