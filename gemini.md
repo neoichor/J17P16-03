@@ -3,7 +3,7 @@
 ## 1. プロジェクトの目的
 
 このプロジェクトは、Java の JDBC（Java Database Connectivity）技術を学習・検証することを目的としています。
-段階的に `jdbc01` から `jdbc03` へと発展しており、データベース操作の基本から DAO（Data Access Object）パターンの実装までを含みます。
+段階的に `jdbc01` から `jdbcXX` へと発展しており、データベース操作の基本から DAO（Data Access Object）パターンの実装までを含みます。
 
 ## 2. 技術スタック
 
